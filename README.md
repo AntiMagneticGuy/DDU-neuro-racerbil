@@ -12,7 +12,7 @@ af Filip Lykke Poulsen
 - Der holdes styr på, hvorvidt den sidste vinder har vundet flere runder i træk
 
 ## Fitness-points:
-- Blå -> lyserød -> grøn (giver 300 point) -> blå...
+- Blå -> rød -> grøn (giver 300 point) -> blå...
 - fra de overstående point bliver der trukket point fra, afhængig af hvor lang tid runden tager at gennemføre (maks 200)
 - hvid: fjerner 0.5 point per frame (med en grænse for, hvor lavt det kan blive)
 
