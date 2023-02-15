@@ -81,10 +81,8 @@ class CarSystem {
     
    }
    CarControllerList.get(0).sensorSystem.best = true;
-   // println(gen/20,": ",mutationSize);
-   // println((mutationSize - gen));
      gen++;
-     mutationSize -= (mutationSize - (gen/100)) > 0 ? gen/100 : 0; // decreases mutation size.
+     mutationSize -= (mutationSize - (gen/100)) > 0 ? gen/100 : mutationSize/15; // decreases mutation size.
   }
   
 }
