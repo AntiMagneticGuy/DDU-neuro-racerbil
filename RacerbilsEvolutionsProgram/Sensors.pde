@@ -3,7 +3,7 @@ class SensorSystem {
   
   //fitnes
   int fitness = 0;
-  int goalPlus = 2000; // goal points
+  int goalPlus = 300; // goal points
   
   String[] goals = new String[3]; // red green blue 
   Boolean gotGoal = false;
@@ -38,6 +38,11 @@ class SensorSystem {
   int     lastTimeInFrames      = 0;
   int     lapTimeInFrames       = 10000;
 
+  // car coloring:
+  int maks = 100;
+  int min = -1;
+  boolean best = false;
+
   void displaySensors() {
     strokeWeight(0.5);
     if (frontSensorSignal) { 
@@ -56,14 +61,23 @@ class SensorSystem {
     line(anchorPos.x, anchorPos.y, anchorPos.x+sensorVectorLeft.x, anchorPos.y+sensorVectorLeft.y);
     line(anchorPos.x, anchorPos.y, anchorPos.x+sensorVectorRight.x, anchorPos.y+sensorVectorRight.y);
 
+
+    // determine car color
+    if (!best){
+    float colorVal = map(fitness, -105, maks, 0, 255);
     strokeWeight(2);
-    if (whiteSensorFrameCount>0) {
-      fill(whiteSensorFrameCount*10, 0, 0);
-    } else {
-      fill(0, clockWiseRotationFrameCounter, 0);
-    }
+    fill(255-colorVal, colorVal, 0);
+   // fill(0, clockWiseRotationFrameCounter, 0); //color car
     ellipse(anchorPos.x, anchorPos.y, 10, 10);
+    }
+    else{
+      strokeWeight(3);
+      fill(0, 0, 255);
+      ellipse(anchorPos.x, anchorPos.y, 15, 15);
+      //println("colorbest");
+    }
   }
+
 
   void updateSensorsignals(PVector pos, PVector vel) {
     //Collision detectors
@@ -77,12 +91,11 @@ class SensorSystem {
     
     
     if (color_car_position ==-1) {
-      whiteSensorFrameCount = whiteSensorFrameCount+1;
-      fitness -= 1;
+      //whiteSensorFrameCount = whiteSensorFrameCount+1;
+      fitness -= fitness < -100 ? 0 : 0.5; // lower limit
     }
     //Laptime calculation
     boolean currentlyOnColor =false;
-    //green
     if (red(color_car_position)==0 && blue(color_car_position)==0 && green(color_car_position)>240) {//den grønne målstreg er detekteret
     goals[1] = "green";
       currentlyOnColor = true;
@@ -106,14 +119,17 @@ class SensorSystem {
     
     if (!currentlyOnColor){ // win
       if (goals[0] == "red" && goals[1] == "green" && goals[2] == "blue"){
-        fitness += goalPlus;
-        println(this.fitness);
+      lapTimeInFrames = frameCount - lastTimeInFrames; //LAPTIME BEREGNES - frames nu - frames sidst
+      lastTimeInFrames = frameCount;
+        float lapTimePunish = map(lapTimeInFrames, 0, 1000, 0, 100) < 200 ? map(lapTimeInFrames, 0, 1000, 0, 100) : 200; // limit to punishment
+        fitness += goalPlus - int(lapTimePunish);
+        //println(int(lapTimePunish));
+        //println(this.fitness);
         for (int i = 0; i < 3; i++){
          goals[i] = "";
         }
         
-      lapTimeInFrames = frameCount - lastTimeInFrames; //LAPTIME BEREGNES - frames nu - frames sidst
-      lastTimeInFrames = frameCount;
+    
       }
       
     }

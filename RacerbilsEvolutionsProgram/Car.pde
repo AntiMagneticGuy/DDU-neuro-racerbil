@@ -7,7 +7,19 @@ class Car {
     vel.rotate(turnAngle);
   }
 
-  void displayCar() {
+  void checkBounds(){ // checker om bilen er kørt ud af mappet
+    if (pos.x > width || pos.x < 0){
+      pos.x = pos.x > width ? width-3 : 3;
+    }
+    if (pos.y > height || pos.y < 0){
+      pos.y = pos.y > height ? height-3 : 3;
+    }
+    
+  }
+
+
+  void displayCar(boolean best) {
+    checkBounds();
     stroke(100);
     fill(100);
     ellipse(pos.x, pos.y, 10, 10);

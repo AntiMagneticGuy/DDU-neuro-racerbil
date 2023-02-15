@@ -1,5 +1,5 @@
 //populationSize: Hvor mange "controllere" der genereres, controller = bil & hjerne & sensorer
-int       populationSize  = 100;     
+int       populationSize  = 110;     
 
 //CarSystem: Indholder en population af "controllere" 
 CarSystem carSystem       = new CarSystem(populationSize);
@@ -31,6 +31,22 @@ void draw() {
       }
     }*/
     //
+    if (carSystem.repeat > 0 || true){
+     textSize(20);
+     fill(0,0,0);
+      text("Runder overlevet: " + carSystem.repeat, 10, height -100);
+    }
+    
+    if (carSystem.CarControllerList.get(0).sensorSystem.fitness > 10){ // er en bil kørt over målstregen
+      textSize(30);
+     fill(0,0,0);
+      text("En bil er kørt over stregen: ", 10, height -60);
+      text("klik for at lave evolution: ", 10, height -30);
+    }
+    fill(0,0,0);
+    textSize(20);
+    text("Mutation variation: "+ carSystem.mutationSize, 250, 20);
+    text("Generation: "+ int(carSystem.gen), 10, 20);
 }
 
 void mouseReleased(){
