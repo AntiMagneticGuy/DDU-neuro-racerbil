@@ -59,7 +59,7 @@ class CarSystem {
     CarControllerList.sort(new carComparator());
     // top 10 survives, is used to mutate the rest.
     // also resets position.
-    println("Fittest car ", " id: "+ CarControllerList.get(0).id + ", score: "+ CarControllerList.get(0).sensorSystem.fitness);
+    println(int(gen),")","Fittest car ", " id: "+ CarControllerList.get(0).id + ", score: "+ CarControllerList.get(0).sensorSystem.fitness);
     
    
    for (int i = 0; i < CarControllerList.size(); i++) {

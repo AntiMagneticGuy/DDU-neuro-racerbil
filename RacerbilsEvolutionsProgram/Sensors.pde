@@ -139,12 +139,6 @@ class SensorSystem {
       }
       
     }
-    //lastGreenDetection = currentlyOnColor && green(color_car_position) > 240 ? true : false; //Husker om der var grønt sidst
-    
-    
-    
-    
-    
     
     //count clockWiseRotationFrameCounter
     centerToCarVector.set((height/2)-pos.x, (width/2)-pos.y);    

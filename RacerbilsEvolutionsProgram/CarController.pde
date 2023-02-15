@@ -36,11 +36,8 @@ class CarController {
     sensorSystem.displaySensors();
   }
   
-  void mutate(CarController cc, float mutationSize){
+  void mutate(CarController cc, float mutationSize){ // muterer bilen med en anden bil som skabelon
      resetCar();
-     //generation:
-     //gen++;
-     //mutationSize -= mutationSize - gen/20 > 0 ? gen/20 : 0; // decreases mutation size.
      
      for(int i=0; i < hjerne.weights.length -1; i++){
       hjerne.weights[i] = cc.hjerne.weights[i] + random(-mutationSize,mutationSize); // gør hjernen til næsten det samme.
@@ -51,7 +48,7 @@ class CarController {
     
   }
   
-  void resetCar(){
+  void resetCar(){ // nulstiller position og point
     bil = new Car();
     sensorSystem = new SensorSystem();
     

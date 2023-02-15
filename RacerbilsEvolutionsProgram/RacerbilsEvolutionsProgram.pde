@@ -4,7 +4,7 @@ int       populationSize  = 110;
 //CarSystem: Indholder en population af "controllere" 
 CarSystem carSystem       = new CarSystem(populationSize);
 
-//trackImage: RacerBanen , Vejen=sort, Udenfor=hvid, Målstreg= 100%grøn 
+
 PImage    trackImage;
 
 void setup() {
@@ -20,17 +20,6 @@ void draw() {
 
   carSystem.updateAndDisplay();
   
-  //TESTKODE: Frastortering af dårlige biler, for hver gang der går 200 frame - f.eks. dem der kører uden for banen
-  /* if (frameCount%200==0) {
-      println("FJERN DEM DER KØRER UDENFOR BANEN frameCount: " + frameCount);
-      for (int i = carSystem.CarControllerList.size()-1 ; i >= 0;  i--) {
-        SensorSystem s = carSystem.CarControllerList.get(i).sensorSystem;
-        if(s.whiteSensorFrameCount > 0){
-          carSystem.CarControllerList.remove(carSystem.CarControllerList.get(i));
-         }
-      }
-    }*/
-    //
     if (true){
      textSize(25);
      fill(0,0,255);
@@ -43,15 +32,15 @@ void draw() {
       text("En bil er kørt over stregen: ", 10, height -60);
       text("klik for at lave evolution: ", 10, height -30);
     }
-    fill(0,0,0);
+    fill(0,0,0); // status
     textSize(20);
     text("Mutation variation: "+ carSystem.mutationSize, 250, 20);
     text("Generation: "+ int(carSystem.gen), 10, 20);
 }
 
-void mouseReleased(){
+void mouseReleased(){ // kan kun evolutionere når en bil er kørt over stregen
    if (carSystem.CarControllerList.get(0).sensorSystem.fitness > 10){ 
-  carSystem.nextGen();
+      carSystem.nextGen();
    }
   
 }
