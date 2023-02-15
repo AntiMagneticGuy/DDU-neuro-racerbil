@@ -18,7 +18,7 @@ class Car {
   }
 
 
-  void displayCar(boolean best) {
+  void displayCar() {
     checkBounds();
     stroke(100);
     fill(100);

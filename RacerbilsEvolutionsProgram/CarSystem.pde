@@ -36,6 +36,7 @@ class CarSystem {
     for (CarController controller : CarControllerList) {
       if (!controller.sensorSystem.best)
       {
+        controller.sensorSystem.leading = false;
       controller.display();
       }
       else{
@@ -44,8 +45,12 @@ class CarSystem {
       }
     }
     if (gen > 1){
-    cc.display();
-    }
+      cc.sensorSystem.leading = false;
+      cc.display();
+      
+    CarControllerList.get(0).sensorSystem.leading = true; // farve førende bil lyseblå.
+    CarControllerList.get(0).display();
+     }
   }
   
   //CarSystem nextGen(){

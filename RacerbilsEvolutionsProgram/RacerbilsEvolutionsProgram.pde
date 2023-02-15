@@ -31,9 +31,9 @@ void draw() {
       }
     }*/
     //
-    if (carSystem.repeat > 0 || true){
-     textSize(20);
-     fill(0,0,0);
+    if (true){
+     textSize(25);
+     fill(0,0,255);
       text("Runder overlevet: " + carSystem.repeat, 10, height -100);
     }
     
@@ -50,8 +50,8 @@ void draw() {
 }
 
 void mouseReleased(){
-  
+   if (carSystem.CarControllerList.get(0).sensorSystem.fitness > 10){ 
   carSystem.nextGen();
-  
+   }
   
 }

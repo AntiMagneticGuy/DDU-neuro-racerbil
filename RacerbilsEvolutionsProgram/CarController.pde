@@ -32,7 +32,7 @@ class CarController {
   }
   
   void display(){
-    bil.displayCar(sensorSystem.best);
+    bil.displayCar();
     sensorSystem.displaySensors();
   }
   

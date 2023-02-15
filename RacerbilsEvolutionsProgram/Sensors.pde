@@ -7,6 +7,7 @@ class SensorSystem {
   
   String[] goals = new String[3]; // red green blue 
   Boolean gotGoal = false;
+  boolean leading = false;
   
   //prevent spinning:
   
@@ -63,18 +64,23 @@ class SensorSystem {
 
 
     // determine car color
-    if (!best){
+    if (!best && !leading){
     float colorVal = map(fitness, -105, maks, 0, 255);
     strokeWeight(2);
     fill(255-colorVal, colorVal, 0);
    // fill(0, clockWiseRotationFrameCounter, 0); //color car
     ellipse(anchorPos.x, anchorPos.y, 10, 10);
     }
-    else{
+    else if (best){
       strokeWeight(3);
       fill(0, 0, 255);
       ellipse(anchorPos.x, anchorPos.y, 15, 15);
       //println("colorbest");
+    }
+    else{
+      strokeWeight(3);
+      fill(64,224,208);
+      ellipse(anchorPos.x, anchorPos.y, 15, 15);
     }
   }
 
