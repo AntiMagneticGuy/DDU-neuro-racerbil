@@ -4,6 +4,12 @@ class CarController {
   Car bil                    = new Car();
   NeuralNetwork hjerne       = new NeuralNetwork(varians); 
   SensorSystem  sensorSystem = new SensorSystem();
+  int id;
+  
+  CarController(int _id){
+    this.id = _id;
+  }
+  
       
   void update() {
     //1.)opdtarer bil 

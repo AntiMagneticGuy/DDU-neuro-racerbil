@@ -6,7 +6,7 @@ class CarSystem {
 
   CarSystem(int populationSize) {
     for (int i=0; i<populationSize; i++) { 
-      CarController controller = new CarController();
+      CarController controller = new CarController(i);
       CarControllerList.add(controller);
     }
   }
@@ -22,4 +22,22 @@ class CarSystem {
       controller.display();
     }
   }
+  
+  //CarSystem nextGen(){
+     void nextGen(){
+    // sort list
+    
+    // top 10 survives, is used to mutate the rest.
+    // also resets position.
+    println(CarControllerList.get(0).id);
+    CarControllerList.sort(new carComparator());
+    println(CarControllerList.get(0).id + ": "+ CarControllerList.get(0).sensorSystem.fitness);
+    
+   // for (CarController controller : CarControllerList) {
+   //   controller.update();
+   // }
+    
+    //return ;
+  }
+  
 }

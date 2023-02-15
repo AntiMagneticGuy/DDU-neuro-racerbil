@@ -15,7 +15,7 @@ void setup() {
 void draw() {
   clear();
   fill(255);
-  rect(0,50,1000,1000);
+  rect(0,0,width,height);
   image(trackImage,0,80);  
 
   carSystem.updateAndDisplay();
@@ -31,4 +31,11 @@ void draw() {
       }
     }*/
     //
+}
+
+void mouseReleased(){
+  
+  carSystem.nextGen();
+  
+  
 }
